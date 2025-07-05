@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskMaster Pro - Advanced To-Do List</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Tutorial Overlay -->
+    <div id="tutorialOverlay" class="tutorial-overlay">
+        <div class="tutorial-content">
+            <div class="tutorial-header">
+                <h2>Welcome to TaskMaster Pro!</h2>
+                <button id="closeTutorial" class="close-tutorial">×</button>
+            </div>
+            <div class="tutorial-body">
+                <div class="tutorial-step active" data-step="1">
+                    <div class="step-icon">🎯</div>
+                    <h3>Getting Started</h3>
+                    <p>Welcome to your personal task management system! Let's take a quick tour to help you master all the features.</p>
+                    <div class="tutorial-navigation">
+                        <button class="tutorial-btn next-btn" onclick="nextTutorialStep()">Get Started</button>
+                    </div>
+                </div>
+                
+                <div class="tutorial-step" data-step="2">
+                    <div class="step-icon">➕</div>
+                    <h3>Adding Tasks</h3>
+                    <p>Create new tasks by filling out the form above. You can set priorities, due dates, and add detailed descriptions to stay organized.</p>
+                    <div class="tutorial-navigation">
+                        <button class="tutorial-btn prev-btn" onclick="prevTutorialStep()">Previous</button>
+                        <button class="tutorial-btn next-btn" onclick="nextTutorialStep()">Next</button>
+                    </div>
+                </div>
+                
+                <div class="tutorial-step" data-step="3">
+                    <div class="step-icon">🔍</div>
+                    <h3>Search & Filter</h3>
+                    <p>Use the search bar to find specific tasks quickly. Filter by status (All, Pending, Completed) and sort by priority, due date, or creation time.</p>
+                    <div class="tutorial-navigation">
+                        <button class="tutorial-btn prev-btn" onclick="prevTutorialStep()">Previous</button>
+                        <button class="tutorial-btn next-btn" onclick="nextTutorialStep()">Next</button>
+                    </div>
+                </div>
+                
+                <div class="tutorial-step" data-step="4">
+                    <div class="step-icon">✏️</div>
+                    <h3>Managing Tasks</h3>
+                    <p>Each task has action buttons: Edit to modify details, Delete to remove tasks, and Mark Complete to track your progress.</p>
+                    <div class="tutorial-navigation">
+                        <button class="tutorial-btn prev-btn" onclick="prevTutorialStep()">Previous</button>
+                        <button class="tutorial-btn next-btn" onclick="nextTutorialStep()">Next</button>
+                    </div>
+                </div>
+                
+                <div class="tutorial-step" data-step="5">
+                    <div class="step-icon">📊</div>
+                    <h3>Track Your Progress</h3>
+                    <p>Monitor your productivity with the progress bar and statistics. Your data is automatically saved locally on your device.</p>
+                    <div class="tutorial-navigation">
+                        <button class="tutorial-btn prev-btn" onclick="prevTutorialStep()">Previous</button>
+                        <button class="tutorial-btn finish-btn" onclick="finishTutorial()">Start Using TaskMaster!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo">📋</div>
+                    <h1>TaskMaster Pro</h1>
+                </div>
+                <div class="header-actions">
+                    <button id="helpBtn" class="help-btn" onclick="showTutorial()">
+                        <span>?</span>
+                        <span class="tooltip">Help & Tutorial</span>
+                    </button>
+                    <div class="theme-toggle">
+                        <button id="themeToggle" onclick="toggleTheme()">🌙</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Progress Section -->
+        <div class="progress-section">
+            <div class="progress-card">
+                <h3>Today's Progress</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-stats">
+                    <span id="completedTasks">0</span> of <span id="totalTasks">0</span> tasks completed
+                </div>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" id="pendingCount">0</div>
+                    <div class="stat-label">Pending</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="completedCount">0</div>
+                    <div class="stat-label">Completed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="highPriorityCount">0</div>
+                    <div class="stat-label">High Priority</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task Form -->
+        <div class="task-form-container">
+            <div class="form-header">
+                <h2>Add New Task</h2>
+                <button id="formToggle" class="form-toggle">−</button>
+            </div>
+            <form class="task-form" id="taskForm">
+                <div class="form-row">
+                    <div class="input-group">
+                        <label for="taskTitle">Task Title *</label>
+                        <input type="text" id="taskTitle" placeholder="Enter task title..." required>
+                    </div>
+                    <div class="input-group">
+                        <label for="taskPriority">Priority</label>
+                        <select id="taskPriority">
+                            <option value="Low">🟢 Low</option>
+                            <option value="Medium" selected>🟡 Medium</option>
+                            <option value="High">🔴 High</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="input-group">
+                        <label for="taskDescription">Description</label>
+                        <textarea id="taskDescription" placeholder="Add task description..." rows="2"></textarea>
+                    </div>
+                    <div class="input-group">
+                        <label for="taskDueDate">Due Date</label>
+                        <input type="datetime-local" id="taskDueDate">
+                    </div>
+                </div>
+                <button type="submit" class="add-task-btn">
+                    <span>+</span>
+                    Add Task
+                </button>
+            </form>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls-section">
+            <div class="search-container">
+                <div class="search-input-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="searchInput" placeholder="Search tasks...">
+                    <button id="clearSearch" class="clear-search">×</button>
+                </div>
+            </div>
+            <div class="filter-controls">
+                <div class="filter-group">
+                    <label>Filter:</label>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="pending">Pending</button>
+                        <button class="filter-btn" data-filter="completed">Completed</button>
+                    </div>
+                </div>
+                <div class="sort-group">
+                    <label for="sortSelect">Sort by:</label>
+                    <select id="sortSelect">
+                        <option value="created">Date Created</option>
+                        <option value="due">Due Date</option>
+                        <option value="priority">Priority</option>
+                        <option value="alphabetical">A-Z</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tasks List -->
+        <div class="tasks-container">
+            <div class="tasks-header">
+                <h2>Your Tasks</h2>
+                <div class="bulk-actions">
+                    <button id="selectAllBtn" class="bulk-btn">Select All</button>
+                    <button id="deleteSelectedBtn" class="bulk-btn delete-bulk" disabled>Delete Selected</button>
+                </div>
+            </div>
+            <div id="tasksGrid" class="tasks-grid">
+                <!-- Tasks will be dynamically inserted here -->
+            </div>
+            <div id="emptyState" class="empty-state">
+                <div class="empty-icon">📝</div>
+                <h3>No tasks yet!</h3>
+                <p>Create your first task to get started with TaskMaster Pro.</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <div class="footer-content">
+                <p>Done by: <strong>Deenprasath</strong></p>
+                <p>TaskMaster Pro - Your Personal Productivity Assistant</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit Task</h3>
+                <button class="modal-close" onclick="closeEditModal()">×</button>
+            </div>
+            <form id="editForm" class="edit-form">
+                <div class="input-group">
+                    <label for="editTitle">Title *</label>
+                    <input type="text" id="editTitle" required>
+                </div>
+                <div class="input-group">
+                    <label for="editDescription">Description</label>
+                    <textarea id="editDescription" rows="3"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="input-group">
+                        <label for="editPriority">Priority</label>
+                        <select id="editPriority">
+                            <option value="Low">🟢 Low</option>
+                            <option value="Medium">🟡 Medium</option>
+                            <option value="High">🔴 High</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="editDueDate">Due Date</label>
+                        <input type="datetime-local" id="editDueDate">
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="cancel-btn" onclick="closeEditModal()">Cancel</button>
+                    <button type="submit" class="save-btn">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

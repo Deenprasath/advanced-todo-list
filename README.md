@@ -26,7 +26,7 @@
 ## 📸 Screenshots
 
 ![Screenshot](todolist.png)  
-_(Add your screenshot to the `screenshots/` folder and update the name if needed)_
+
 
 ## 🌐 Live Demo
 

@@ -30,7 +30,7 @@ _(Add your screenshot to the `screenshots/` folder and update the name if needed
 
 ## 🌐 Live Demo
 
-🔗 **[Click here to try the app!](https://deenprasath.github.io/advanced-todo-list-/)**
+🔗 **[Click here to try the app!](https://deenprasath.github.io/advanced-todo-list/)**
 
 
 

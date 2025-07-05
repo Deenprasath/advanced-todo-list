@@ -30,8 +30,8 @@ _(Add your screenshot to the `screenshots/` folder and update the name if needed
 
 ## 🌐 Live Demo
 
-🔗 **[Click here to try the app!](https://Deenprasath.github.io/taskmaster-pro/)**  
-_(Replace with your actual GitHub Pages link after deploying)
+🔗 **[Click here to try the app!](https://deenprasath.github.io/taskmaster-pro/)**
+
 
 
 

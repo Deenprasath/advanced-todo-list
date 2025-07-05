@@ -28,5 +28,10 @@
 ![Screenshot](todolist.png)  
 _(Add your screenshot to the `screenshots/` folder and update the name if needed)_
 
-## 📂 Folder Structure
+## 🌐 Live Demo
+
+🔗 **[Click here to try the app!](https://Deenprasath.github.io/taskmaster-pro/)**  
+_(Replace with your actual GitHub Pages link after deploying)
+
+
 
